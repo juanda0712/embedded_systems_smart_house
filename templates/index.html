@@ -6,19 +6,59 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Bienvenido a la casa inteligente</h1>
-    <div id="contenedor"></div>
+    <h1>Casa Inteligente</h1>
+
+    <div>
+        <h2>Luces</h2>
+        <div id="luces"></div>
+    </div>
+
+    <div>
+        <h2>Puertas</h2>
+        <div id="puertas"></div>
+    </div>
 
     <script>
-        fetch('/api/estado')
-            .then(response => response.json())
-            .then(data => {
-                const cont = document.getElementById("contenedor");
-                cont.innerHTML = `
-                    <p>Luces: ${data.luces.join(', ')}</p>
-                    <p>Puertas: ${data.puertas.join(', ')}</p>
-                `;
+        async function obtenerEstado() {
+            const res = await fetch('/api/estado');
+            return await res.json();
+        }
+
+        async function cambiarLuz(index) {
+            const estado = await obtenerEstado();
+            estado.luces[index] = !estado.luces[index];
+            await fetch('/api/estado', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(estado)
             });
+            render();
+        }
+
+        async function render() {
+            const estado = await obtenerEstado();
+
+            // Luces
+            const lucesDiv = document.getElementById('luces');
+            lucesDiv.innerHTML = '';
+            estado.luces.forEach((valor, i) => {
+                const btn = document.createElement('button');
+                btn.textContent = `Luz ${i + 1}: ${valor ? 'Encendida' : 'Apagada'}`;
+                btn.onclick = () => cambiarLuz(i);
+                lucesDiv.appendChild(btn);
+            });
+
+            // Puertas (solo mostrar, por ahora)
+            const puertasDiv = document.getElementById('puertas');
+            puertasDiv.innerHTML = '';
+            estado.puertas.forEach((valor, i) => {
+                const p = document.createElement('p');
+                p.textContent = `Puerta ${i + 1}: ${valor ? 'Abierta' : 'Cerrada'}`;
+                puertasDiv.appendChild(p);
+            });
+        }
+
+        render();
     </script>
 </body>
 </html>
