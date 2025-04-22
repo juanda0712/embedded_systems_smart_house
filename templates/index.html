@@ -18,6 +18,13 @@
         <div id="puertas"></div>
     </div>
 
+    <div>
+        <h2>Jardín</h2>
+        <button onclick="verJardin()">Tomar foto del jardín</button>
+        <div id="foto-jardin"></div>
+    </div>
+    
+
     <script>
         async function obtenerEstado() {
             const res = await fetch('/api/estado');
@@ -45,7 +52,17 @@
             await actualizarEstado(estado);
             render();
         }
-    
+
+        function verJardin() {
+            const cont = document.getElementById('foto-jardin');
+            const img = document.createElement('img');
+            img.src = '/api/camara?' + new Date().getTime(); // evitar caché
+            img.alt = "Foto del jardín";
+            img.style.maxWidth = '100%';
+            cont.innerHTML = '';
+            cont.appendChild(img);
+        }
+
         async function render() {
             const estado = await obtenerEstado();
     

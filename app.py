@@ -19,5 +19,9 @@ def obtener_estado():
         estado = datos
     return jsonify(estado)
 
+@app.route('/api/camara')
+def camara():
+    return app.send_static_file('picture.jpeg')
+
 if __name__ == '__main__':
     app.run(debug=True)
