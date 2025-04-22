@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Casa Inteligente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Bienvenido a la casa inteligente</h1>
+    <div id="contenedor"></div>
+
+    <script>
+        fetch('/api/estado')
+            .then(response => response.json())
+            .then(data => {
+                const cont = document.getElementById("contenedor");
+                cont.innerHTML = `
+                    <p>Luces: ${data.luces.join(', ')}</p>
+                    <p>Puertas: ${data.puertas.join(', ')}</p>
+                `;
+            });
+    </script>
+</body>
+</html>
