@@ -23,21 +23,32 @@
             const res = await fetch('/api/estado');
             return await res.json();
         }
-
-        async function cambiarLuz(index) {
-            const estado = await obtenerEstado();
-            estado.luces[index] = !estado.luces[index];
+    
+        async function actualizarEstado(nuevoEstado) {
             await fetch('/api/estado', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(estado)
+                body: JSON.stringify(nuevoEstado)
             });
+        }
+    
+        async function cambiarLuz(index) {
+            const estado = await obtenerEstado();
+            estado.luces[index] = !estado.luces[index];
+            await actualizarEstado(estado);
             render();
         }
-
+    
+        async function cambiarPuerta(index) {
+            const estado = await obtenerEstado();
+            estado.puertas[index] = !estado.puertas[index];
+            await actualizarEstado(estado);
+            render();
+        }
+    
         async function render() {
             const estado = await obtenerEstado();
-
+    
             // Luces
             const lucesDiv = document.getElementById('luces');
             lucesDiv.innerHTML = '';
@@ -47,18 +58,20 @@
                 btn.onclick = () => cambiarLuz(i);
                 lucesDiv.appendChild(btn);
             });
-
-            // Puertas (solo mostrar, por ahora)
+    
+            // Puertas
             const puertasDiv = document.getElementById('puertas');
             puertasDiv.innerHTML = '';
             estado.puertas.forEach((valor, i) => {
-                const p = document.createElement('p');
-                p.textContent = `Puerta ${i + 1}: ${valor ? 'Abierta' : 'Cerrada'}`;
-                puertasDiv.appendChild(p);
+                const btn = document.createElement('button');
+                btn.textContent = `Puerta ${i + 1}: ${valor ? 'Abierta' : 'Cerrada'}`;
+                btn.onclick = () => cambiarPuerta(i);
+                puertasDiv.appendChild(btn);
             });
         }
-
+    
         render();
     </script>
+    
 </body>
 </html>
