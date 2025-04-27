@@ -47,15 +47,16 @@ int main(int argc, char **argv) {
             struct gpiod_line_event event;
             if (gpiod_line_event_read(line, &event) == 0) {
                 if (event.event_type == GPIOD_LINE_EVENT_RISING_EDGE) {
+                    gpiod_chip_close(chip);
+                    return 0
                     printf("⚡ Evento Rising en el pin %d\n", pin);
                 } else if (event.event_type == GPIOD_LINE_EVENT_FALLING_EDGE) {
+                    gpiod_chip_close(chip);
                     printf("🔻 Evento Falling en el pin %d\n", pin);
+                    return 1
                 }
             }
         }
     }
-
-    gpiod_chip_close(chip);
-    return 0;
 }
 
