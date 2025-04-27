@@ -1,60 +1,61 @@
+// monitor_input.c
 #include <gpiod.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h> // Para sleep()
-#include <string.h>
+#include <unistd.h>
+#include <poll.h>
 
-#define CONSUMER "gpio-monitor"
-#define CHIPNAME "gpiochip0"
+#define CONSUMER "gpio-input-monitor"
 
-int main() {
-    struct gpiod_chip *chip;
-    struct gpiod_line *lines[4];
-    int input_pins[] = {4, 17, 27, 22};
-    int last_states[4] = { -1, -1, -1, -1 }; // Para detectar cambios
-    size_t i;
+int main(int argc, char **argv) {
+    if (argc != 2) {
+        printf("Uso: %s <numero_de_pin>\n", argv[0]);
+        return 1;
+    }
 
-    chip = gpiod_chip_open_by_name(CHIPNAME);
+    int pin = atoi(argv[1]);
+    const char *chipname = "gpiochip0";
+
+    struct gpiod_chip *chip = gpiod_chip_open_by_name(chipname);
     if (!chip) {
-        perror("Error abriendo gpiochip");
-        return EXIT_FAILURE;
+        perror("Error al abrir el chip GPIO");
+        return 1;
     }
 
-    for (i = 0; i < 4; i++) {
-        lines[i] = gpiod_chip_get_line(chip, input_pins[i]);
-        if (!lines[i]) {
-            fprintf(stderr, "Error obteniendo pin %d\n", input_pins[i]);
-            gpiod_chip_close(chip);
-            return EXIT_FAILURE;
-        }
-        if (gpiod_line_request_input(lines[i], CONSUMER) < 0) {
-            fprintf(stderr, "Error configurando pin %d como entrada\n", input_pins[i]);
-            gpiod_chip_close(chip);
-            return EXIT_FAILURE;
-        }
+    struct gpiod_line *line = gpiod_chip_get_line(chip, pin);
+    if (!line) {
+        perror("Error al obtener la línea GPIO");
+        gpiod_chip_close(chip);
+        return 1;
     }
 
-    printf("Monitor de entradas iniciado...\n");
+    if (gpiod_line_request_both_edges_events(line, CONSUMER) < 0) {
+        perror("Error al solicitar eventos en el pin");
+        gpiod_chip_close(chip);
+        return 1;
+    }
+
+    struct pollfd pfd;
+    pfd.fd = gpiod_line_event_get_fd(line);
+    pfd.events = POLLIN;
+
+    printf("Esperando eventos en el pin %d...\n", pin);
 
     while (1) {
-        for (i = 0; i < 4; i++) {
-            int value = gpiod_line_get_value(lines[i]);
-            if (value < 0) {
-                fprintf(stderr, "Error leyendo pin %d\n", input_pins[i]);
-                continue;
-            }
-
-            // Solo reporta cambios (opcional, puedes quitar esta condición si quieres imprimir siempre)
-            if (last_states[i] != value) {
-                printf("Pin %d -> Estado: %d\n", input_pins[i], value);
-                last_states[i] = value;
+        int ret = poll(&pfd, 1, -1);
+        if (ret > 0 && (pfd.revents & POLLIN)) {
+            struct gpiod_line_event event;
+            if (gpiod_line_event_read(line, &event) == 0) {
+                if (event.event_type == GPIOD_LINE_EVENT_RISING_EDGE) {
+                    printf("⚡ Evento Rising en el pin %d\n", pin);
+                } else if (event.event_type == GPIOD_LINE_EVENT_FALLING_EDGE) {
+                    printf("🔻 Evento Falling en el pin %d\n", pin);
+                }
             }
         }
-
-        usleep(100 * 1000); // Espera 100 ms entre lecturas
     }
 
     gpiod_chip_close(chip);
-    return EXIT_SUCCESS;
+    return 0;
 }
 
