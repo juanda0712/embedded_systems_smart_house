@@ -15,7 +15,6 @@
 
     <div>
         <h2>Puertas</h2>
-        <button onclick="actualizarPuertas()">Actualizar estado de puertas</button>
         <div id="puertas"></div>
     </div>
 
@@ -58,7 +57,7 @@
             });
         }
 
-        async function actualizarPuertas() {
+        async function renderPuertas() {
             const res = await fetch('/api/puertas');
             const puertas = await res.json();
             const puertasDiv = document.getElementById('puertas');
@@ -68,7 +67,8 @@
                 p.textContent = `Puerta ${i + 1}: ${valor ? 'Abierta' : 'Cerrada'}`;
                 puertasDiv.appendChild(p);
             });
-        }
+}
+
 
         function verJardin() {
             const cont = document.getElementById('foto-jardin');
@@ -81,9 +81,12 @@
         }
 
         function init() {
-            renderLuces();
-            actualizarPuertas();
+            renderLuces();    // Carga las luces una vez
+            renderPuertas();  // Carga las puertas una vez
+
+            setInterval(renderPuertas, 2000);  // 2000 ms = 2 segundos
         }
+
 
         init();
     </script>
