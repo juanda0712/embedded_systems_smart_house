@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main() {
-    const char *output_file = "/tmp/foto.jpg";  // Foto guardada en tmp
+    const char *output_file = "/usr/share/mi-servidor-flask/static/picture.jpg";  // Foto guardada en tmp
     const char *device = "/dev/video0";          // Dispositivo cámara
     const char *command_template = "fswebcam -d %s --jpeg 95 -r 640x480 %s";
 
