@@ -15,6 +15,7 @@
 
     <div>
         <h2>Puertas</h2>
+        <button onclick="actualizarPuertas()">Actualizar estado de puertas</button>
         <div id="puertas"></div>
     </div>
 
@@ -23,34 +24,50 @@
         <button onclick="verJardin()">Tomar foto del jardín</button>
         <div id="foto-jardin"></div>
     </div>
-    
 
     <script>
-        async function obtenerEstado() {
-            const res = await fetch('/api/estado');
+        async function obtenerLuces() {
+            const res = await fetch('/api/luces');
             return await res.json();
         }
-    
-        async function actualizarEstado(nuevoEstado) {
-            await fetch('/api/estado', {
+
+        async function actualizarLuces(nuevoEstado) {
+            await fetch('/api/luces', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(nuevoEstado)
+                body: JSON.stringify({ luces: nuevoEstado })
             });
         }
-    
+
         async function cambiarLuz(index) {
-            const estado = await obtenerEstado();
-            estado.luces[index] = !estado.luces[index];
-            await actualizarEstado(estado);
-            render();
+            const luces = await obtenerLuces();
+            luces[index] = !luces[index];
+            await actualizarLuces(luces);
+            renderLuces();
         }
-    
-        async function cambiarPuerta(index) {
-            const estado = await obtenerEstado();
-            estado.puertas[index] = !estado.puertas[index];
-            await actualizarEstado(estado);
-            render();
+
+        async function renderLuces() {
+            const luces = await obtenerLuces();
+            const lucesDiv = document.getElementById('luces');
+            lucesDiv.innerHTML = '';
+            luces.forEach((valor, i) => {
+                const btn = document.createElement('button');
+                btn.textContent = `Luz ${i + 1}: ${valor ? 'Encendida' : 'Apagada'}`;
+                btn.onclick = () => cambiarLuz(i);
+                lucesDiv.appendChild(btn);
+            });
+        }
+
+        async function actualizarPuertas() {
+            const res = await fetch('/api/puertas');
+            const puertas = await res.json();
+            const puertasDiv = document.getElementById('puertas');
+            puertasDiv.innerHTML = '';
+            puertas.forEach((valor, i) => {
+                const p = document.createElement('p');
+                p.textContent = `Puerta ${i + 1}: ${valor ? 'Abierta' : 'Cerrada'}`;
+                puertasDiv.appendChild(p);
+            });
         }
 
         function verJardin() {
@@ -63,32 +80,13 @@
             cont.appendChild(img);
         }
 
-        async function render() {
-            const estado = await obtenerEstado();
-    
-            // Luces
-            const lucesDiv = document.getElementById('luces');
-            lucesDiv.innerHTML = '';
-            estado.luces.forEach((valor, i) => {
-                const btn = document.createElement('button');
-                btn.textContent = `Luz ${i + 1}: ${valor ? 'Encendida' : 'Apagada'}`;
-                btn.onclick = () => cambiarLuz(i);
-                lucesDiv.appendChild(btn);
-            });
-    
-            // Puertas
-            const puertasDiv = document.getElementById('puertas');
-            puertasDiv.innerHTML = '';
-            estado.puertas.forEach((valor, i) => {
-                const btn = document.createElement('button');
-                btn.textContent = `Puerta ${i + 1}: ${valor ? 'Abierta' : 'Cerrada'}`;
-                btn.onclick = () => cambiarPuerta(i);
-                puertasDiv.appendChild(btn);
-            });
+        function init() {
+            renderLuces();
+            actualizarPuertas();
         }
-    
-        render();
+
+        init();
     </script>
-    
+
 </body>
 </html>
