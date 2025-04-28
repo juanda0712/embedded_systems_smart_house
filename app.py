@@ -9,10 +9,10 @@ estado = {
 }
 
 def encender_luz(index):
-    subprocess.run(["bins/outputs/bin/signal_sender", str(index), "on"])
+    subprocess.run(["bins/outputs/bin/signal_sender", str(index), "1"])
 
 def apagar_luz(index):
-    subprocess.run(["bins/outputs/bin/signal_sender", str(index), "off"])
+    subprocess.run(["bins/outputs/bin/signal_sender", str(index), "0"])
 
 def leer_puerta(index):
     resultado = subprocess.run(["bins/inputs/bin/signal_verifier", str(index)])
