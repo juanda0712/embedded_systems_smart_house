@@ -1,8 +1,17 @@
 from flask import Flask, render_template, jsonify, request
 import subprocess
 import os
+import json
 
-BASE_DIR = "/usr/share/mi-servidor-flask"
+# Leer configuración local
+CONFIG_FILE = "config_local.json"
+
+if os.path.exists(CONFIG_FILE):
+    with open(CONFIG_FILE) as f:
+        config = json.load(f)
+    BASE_DIR = config.get("BASE_DIR", ".")
+else:
+    BASE_DIR = "."
 
 app = Flask(__name__,
             static_folder=os.path.join(BASE_DIR, 'static'),
