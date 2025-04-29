@@ -3,62 +3,76 @@
 {% block title %}Casa Inteligente{% endblock %}
 
 {% block content %}
-<h1>Casa Inteligente (Vista 2D)</h1>
 
-<div id="casa">
-    <svg id="plano-casa" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+<div class="contenedor">
+    <div class="columna-izquierda">
+        <h1>Casa Inteligente</h1>
+        <div id="casa">
+            <svg id="plano-casa" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+        
+                <!-- Pasillo de Entrada -->
+                <rect x="350" y="25" width="100" height="55" fill="#ccc" stroke="#333" stroke-width="3" />
+                <text x="400" y="50" text-anchor="middle" font-size="14" fill="#000">Entrada</text>
+        
+                <!-- Habitación 1 -->
+                <rect id="habitacion-1" x="200" y="80" width="180" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
+                <text x="290" y="160" text-anchor="middle" font-size="16" fill="#000">Habitación 1</text>
+        
+                <!-- Habitación 2 -->
+                <rect id="habitacion-2" x="420" y="80" width="180" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
+                <text x="510" y="160" text-anchor="middle" font-size="16" fill="#000">Habitación 2</text>
+        
+                <!-- Sala -->
+                <rect id="habitacion-3" x="200" y="230" width="133" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
+                <text x="266" y="300" text-anchor="middle" font-size="16" fill="#000">Sala</text>
+        
+                <!-- Comedor -->
+                <rect id="habitacion-4" x="333" y="230" width="134" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
+                <text x="400" y="300" text-anchor="middle" font-size="16" fill="#000">Cocina</text>
+        
+                <!-- Cocina -->
+                <rect id="habitacion-5" x="467" y="230" width="133" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
+                <text x="533" y="300" text-anchor="middle" font-size="16" fill="#000">Comedor</text>
+        
+                <!-- Patio / Jardín -->
+                <rect id="patio" x="200" y="380" width="400" height="100" fill="#b5e7a0" stroke="#333" stroke-width="3"/>
+                <text x="400" y="430" text-anchor="middle" font-size="16" fill="#000">Patio / Jardín</text>
+        
+                <!-- Puertas (todas iguales y con IDs) -->
+                <!-- Puerta principal -->
+                <rect id="puerta-1" x="375" y="20" width="50" height="10" fill="#8b4513" stroke="#000" stroke-width="2"/>
+        
+                <!-- Puerta trasera -->
+                <rect id="puerta-2" x="375" y="380" width="50" height="10" fill="#8b4513" stroke="#000" stroke-width="2"/>
+        
+                <!-- Puerta entre Habitación 1 y Sala -->
+                <rect id="puerta-3" x="255" y="230" width="50" height="10" fill="#8b4513" stroke="#000" stroke-width="2"/>
+        
+                <!-- Puerta entre Habitación 2 y Cocina -->
+                <rect id="puerta-4" x="495" y="230" width="50" height="10" fill="#8b4513" stroke="#000" stroke-width="2"/>
+        
+            </svg>
+        </div>
+    </div>
 
-        <!-- Pasillo de Entrada -->
-        <rect x="350" y="0" width="100" height="80" fill="#ccc" stroke="#333" stroke-width="3" />
-        <text x="400" y="50" text-anchor="middle" font-size="14" fill="#000">Entrada</text>
+    <div class="columna-derecha">
+        <!-- Control de luces -->
+        <div id="controles-luces">
+            <h2>Control de luces</h2>
+        </div>
 
-        <!-- Habitación 1 -->
-        <rect id="habitacion-1" x="200" y="80" width="200" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
-        <text x="300" y="160" text-anchor="middle" font-size="16" fill="#000">Habitación 1</text>
+        <!-- Estado de puertas -->
+        <div id="puertas">
+            <h2>Estado de puertas</h2>
+        </div>
 
-        <!-- Habitación 2 -->
-        <rect id="habitacion-2" x="400" y="80" width="200" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
-        <text x="500" y="160" text-anchor="middle" font-size="16" fill="#000">Habitación 2</text>
-
-        <!-- Sala -->
-        <rect id="habitacion-3" x="200" y="230" width="133" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
-        <text x="266" y="300" text-anchor="middle" font-size="16" fill="#000">Sala</text>
-
-        <!-- Comedor -->
-        <rect id="habitacion-4" x="333" y="230" width="134" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
-        <text x="400" y="300" text-anchor="middle" font-size="16" fill="#000">Cocina</text>
-
-        <!-- Cocina -->
-        <rect id="habitacion-5" x="467" y="230" width="133" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
-        <text x="533" y="300" text-anchor="middle" font-size="16" fill="#000">Comedor</text>
-
-        <!-- Patio / Jardín -->
-        <rect id="patio" x="200" y="380" width="400" height="100" fill="#b5e7a0" stroke="#333" stroke-width="3"/>
-        <text x="400" y="430" text-anchor="middle" font-size="16" fill="#000">Patio / Jardín</text>
-
-        <!-- Puerta principal (entrada) -->
-        <rect x="375" y="-15" width="50" height="15" fill="#8b4513" stroke="#000" stroke-width="2"/>
-
-        <!-- Puerta trasera (al patio) -->
-        <rect x="375" y="380" width="50" height="10" fill="#8b4513" stroke="#000" stroke-width="2"/>
-    </svg>
-</div>
-
-<!-- Control de luces -->
-<div id="controles-luces">
-    <h2>Control de luces</h2>
-</div>
-
-<!-- Estado de puertas -->
-<div id="puertas">
-    <h2>Estado de puertas</h2>
-</div>
-
-<!-- Jardín -->
-<div id="jardin">
-    <h2>Jardín</h2>
-    <button onclick="verJardin()">Tomar foto del jardín</button>
-    <div id="foto-jardin"></div>
+        <!-- Jardín -->
+        <div id="jardin">
+            <h2>Jardín</h2>
+            <button onclick="verJardin()">Tomar foto del jardín</button>
+            <div id="foto-jardin"></div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -96,7 +110,7 @@
         });
     }
 
-	async function renderPuertas() {
+    async function renderPuertas() {
         const res = await fetch('/api/puertas');
         const puertas = await res.json();
         const cont = document.getElementById('puertas');
@@ -106,6 +120,11 @@
             const p = document.createElement('p');
             p.textContent = `Puerta ${i + 1}: ${estado ? 'Abierta' : 'Cerrada'}`;
             cont.appendChild(p);
+
+            const puerta = document.getElementById(`puerta-${i + 1}`);
+            if (puerta) {
+                puerta.setAttribute('fill', estado ? '#32CD32' : '#8b4513'); // Verde si abierta, marrón si cerrada
+            }
         });
     }
 
@@ -140,4 +159,62 @@
 
     window.onload = init;
 </script>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .contenedor {
+        display: flex;
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .columna-izquierda, .columna-derecha {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .columna-izquierda {
+        flex: 3;
+    }
+
+    .columna-derecha {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    h1, h2 {
+        color: #333;
+    }
+
+    button {
+        margin: 5px 0;
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #foto-jardin img {
+        margin-top: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+</style>
 {% endblock %}
