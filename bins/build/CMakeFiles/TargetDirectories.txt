@@ -1,0 +1,11 @@
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/CMakeFiles/edit_cache.dir
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/CMakeFiles/rebuild_cache.dir
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/inputs/CMakeFiles/signal_verifier.dir
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/inputs/CMakeFiles/edit_cache.dir
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/inputs/CMakeFiles/rebuild_cache.dir
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/outputs/CMakeFiles/signal_sender.dir
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/outputs/CMakeFiles/edit_cache.dir
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/outputs/CMakeFiles/rebuild_cache.dir
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/photo/CMakeFiles/photo.dir
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/photo/CMakeFiles/edit_cache.dir
+/home/duesan/Documents/embedded_systems_smart_house/bins/build/photo/CMakeFiles/rebuild_cache.dir

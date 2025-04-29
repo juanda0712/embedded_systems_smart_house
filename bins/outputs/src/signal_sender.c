@@ -1,8 +1,7 @@
+#include "signal_sender.h"
 #include <gpiod.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#define CONSUMER "gpio-output-control"
 
 int output_pins[] = {5, 6, 13, 19, 26};
 int output_count = sizeof(output_pins) / sizeof(int);
@@ -16,15 +15,7 @@ int pin_es_valido(int pin) {
     return 0;
 }
 
-int main(int argc, char **argv) {
-    if (argc != 3) {
-        printf("Uso: %s <numero_de_pin> <0|1>\n", argv[0]);
-        return 1;
-    }
-
-    int pin = atoi(argv[1]);
-    int value = atoi(argv[2]);
-
+int signal_sender(int pin, int value) {
     if (!pin_es_valido(pin)) {
         printf("Error: El pin %d no está permitido como salida\n", pin);
         return 1;
@@ -52,11 +43,37 @@ int main(int argc, char **argv) {
 
     if (gpiod_line_set_value(line, value) < 0) {
         perror("Error al establecer valor del pin");
-    } else {
-        printf("GPIO %d establecido a %d\n", pin, value);
+        gpiod_chip_close(chip);
+        return 1;
     }
+
+    printf("GPIO %d establecido a %d\n", pin, value);
 
     gpiod_chip_close(chip);
     return 0;
 }
 
+int main(int argc, char **argv) {
+    if (argc != 3) {
+        printf("Uso: %s <numero_de_pin> <valor (0 o 1)>\n", argv[0]);
+        return 1;
+    }
+
+    int pin = atoi(argv[1]);
+    int value = atoi(argv[2]);
+
+    // Validar que el valor sea 0 o 1
+    if (value != 0 && value != 1) {
+        printf("Error: El valor debe ser 0 o 1\n");
+        return 1;
+    }
+
+    int resultado = signal_sender(pin, value);
+    if (resultado != 0) {
+        printf("Error al configurar el pin %d\n", pin);
+        return 1;
+    }
+
+    printf("Pin %d configurado a %d correctamente\n", pin, value);
+    return 0;
+}
