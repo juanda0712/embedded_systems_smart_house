@@ -92,6 +92,7 @@ signal_sender_EXTERNAL_OBJECTS =
 
 bin/signal_sender: outputs/CMakeFiles/signal_sender.dir/src/signal_sender.c.o
 bin/signal_sender: outputs/CMakeFiles/signal_sender.dir/build.make
+bin/signal_sender: lib/libsignal_sender_lib.so
 bin/signal_sender: outputs/CMakeFiles/signal_sender.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/duesan/Documents/embedded_systems_smart_house/bins/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable ../bin/signal_sender"
 	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build/outputs && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/signal_sender.dir/link.txt --verbose=$(VERBOSE)

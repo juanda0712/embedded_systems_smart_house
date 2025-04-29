@@ -117,6 +117,20 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+outputs/CMakeFiles/signal_sender_lib.dir/rule:
+	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 outputs/CMakeFiles/signal_sender_lib.dir/rule
+.PHONY : outputs/CMakeFiles/signal_sender_lib.dir/rule
+
+# Convenience name for target.
+signal_sender_lib: outputs/CMakeFiles/signal_sender_lib.dir/rule
+.PHONY : signal_sender_lib
+
+# fast build rule for target.
+signal_sender_lib/fast:
+	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f outputs/CMakeFiles/signal_sender_lib.dir/build.make outputs/CMakeFiles/signal_sender_lib.dir/build
+.PHONY : signal_sender_lib/fast
+
+# Convenience name for target.
 outputs/CMakeFiles/signal_sender.dir/rule:
 	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 outputs/CMakeFiles/signal_sender.dir/rule
 .PHONY : outputs/CMakeFiles/signal_sender.dir/rule
@@ -129,6 +143,30 @@ signal_sender: outputs/CMakeFiles/signal_sender.dir/rule
 signal_sender/fast:
 	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f outputs/CMakeFiles/signal_sender.dir/build.make outputs/CMakeFiles/signal_sender.dir/build
 .PHONY : signal_sender/fast
+
+lib/signal_sender_lib.o: lib/signal_sender_lib.c.o
+.PHONY : lib/signal_sender_lib.o
+
+# target to build an object file
+lib/signal_sender_lib.c.o:
+	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f outputs/CMakeFiles/signal_sender_lib.dir/build.make outputs/CMakeFiles/signal_sender_lib.dir/lib/signal_sender_lib.c.o
+.PHONY : lib/signal_sender_lib.c.o
+
+lib/signal_sender_lib.i: lib/signal_sender_lib.c.i
+.PHONY : lib/signal_sender_lib.i
+
+# target to preprocess a source file
+lib/signal_sender_lib.c.i:
+	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f outputs/CMakeFiles/signal_sender_lib.dir/build.make outputs/CMakeFiles/signal_sender_lib.dir/lib/signal_sender_lib.c.i
+.PHONY : lib/signal_sender_lib.c.i
+
+lib/signal_sender_lib.s: lib/signal_sender_lib.c.s
+.PHONY : lib/signal_sender_lib.s
+
+# target to generate assembly for a file
+lib/signal_sender_lib.c.s:
+	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f outputs/CMakeFiles/signal_sender_lib.dir/build.make outputs/CMakeFiles/signal_sender_lib.dir/lib/signal_sender_lib.c.s
+.PHONY : lib/signal_sender_lib.c.s
 
 src/signal_sender.o: src/signal_sender.c.o
 .PHONY : src/signal_sender.o
@@ -163,6 +201,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... signal_sender"
+	@echo "... signal_sender_lib"
+	@echo "... lib/signal_sender_lib.o"
+	@echo "... lib/signal_sender_lib.i"
+	@echo "... lib/signal_sender_lib.s"
 	@echo "... src/signal_sender.o"
 	@echo "... src/signal_sender.i"
 	@echo "... src/signal_sender.s"

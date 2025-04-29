@@ -82,6 +82,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.28/Modules/Compiler/XL-C-DetermineCompiler.cmake"
   "/opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.28/Modules/Compiler/XLClang-C-DetermineCompiler.cmake"
   "/opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.28/Modules/Compiler/zOS-C-DetermineCompiler.cmake"
+  "/opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake"
+  "/opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake"
+  "/opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.28/Modules/FindPkgConfig.cmake"
   "/opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.28/Modules/Internal/FeatureTesting.cmake"
   "/opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake"
   "/opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake"
@@ -110,7 +113,9 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "inputs/CMakeFiles/signal_verifier_lib.dir/DependInfo.cmake"
   "inputs/CMakeFiles/signal_verifier.dir/DependInfo.cmake"
+  "outputs/CMakeFiles/signal_sender_lib.dir/DependInfo.cmake"
   "outputs/CMakeFiles/signal_sender.dir/DependInfo.cmake"
   "photo/CMakeFiles/photo.dir/DependInfo.cmake"
   )

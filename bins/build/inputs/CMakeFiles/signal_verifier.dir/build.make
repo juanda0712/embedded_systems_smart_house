@@ -92,6 +92,7 @@ signal_verifier_EXTERNAL_OBJECTS =
 
 bin/signal_verifier: inputs/CMakeFiles/signal_verifier.dir/src/signal_verifier.c.o
 bin/signal_verifier: inputs/CMakeFiles/signal_verifier.dir/build.make
+bin/signal_verifier: lib/libsignal_verifier_lib.so
 bin/signal_verifier: inputs/CMakeFiles/signal_verifier.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/duesan/Documents/embedded_systems_smart_house/bins/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable ../bin/signal_verifier"
 	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build/inputs && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/signal_verifier.dir/link.txt --verbose=$(VERBOSE)

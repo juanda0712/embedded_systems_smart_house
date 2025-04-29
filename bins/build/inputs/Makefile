@@ -117,6 +117,20 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+inputs/CMakeFiles/signal_verifier_lib.dir/rule:
+	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 inputs/CMakeFiles/signal_verifier_lib.dir/rule
+.PHONY : inputs/CMakeFiles/signal_verifier_lib.dir/rule
+
+# Convenience name for target.
+signal_verifier_lib: inputs/CMakeFiles/signal_verifier_lib.dir/rule
+.PHONY : signal_verifier_lib
+
+# fast build rule for target.
+signal_verifier_lib/fast:
+	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f inputs/CMakeFiles/signal_verifier_lib.dir/build.make inputs/CMakeFiles/signal_verifier_lib.dir/build
+.PHONY : signal_verifier_lib/fast
+
+# Convenience name for target.
 inputs/CMakeFiles/signal_verifier.dir/rule:
 	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 inputs/CMakeFiles/signal_verifier.dir/rule
 .PHONY : inputs/CMakeFiles/signal_verifier.dir/rule
@@ -129,6 +143,30 @@ signal_verifier: inputs/CMakeFiles/signal_verifier.dir/rule
 signal_verifier/fast:
 	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f inputs/CMakeFiles/signal_verifier.dir/build.make inputs/CMakeFiles/signal_verifier.dir/build
 .PHONY : signal_verifier/fast
+
+lib/signal_verifier_lib.o: lib/signal_verifier_lib.c.o
+.PHONY : lib/signal_verifier_lib.o
+
+# target to build an object file
+lib/signal_verifier_lib.c.o:
+	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f inputs/CMakeFiles/signal_verifier_lib.dir/build.make inputs/CMakeFiles/signal_verifier_lib.dir/lib/signal_verifier_lib.c.o
+.PHONY : lib/signal_verifier_lib.c.o
+
+lib/signal_verifier_lib.i: lib/signal_verifier_lib.c.i
+.PHONY : lib/signal_verifier_lib.i
+
+# target to preprocess a source file
+lib/signal_verifier_lib.c.i:
+	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f inputs/CMakeFiles/signal_verifier_lib.dir/build.make inputs/CMakeFiles/signal_verifier_lib.dir/lib/signal_verifier_lib.c.i
+.PHONY : lib/signal_verifier_lib.c.i
+
+lib/signal_verifier_lib.s: lib/signal_verifier_lib.c.s
+.PHONY : lib/signal_verifier_lib.s
+
+# target to generate assembly for a file
+lib/signal_verifier_lib.c.s:
+	cd /home/duesan/Documents/embedded_systems_smart_house/bins/build && $(MAKE) $(MAKESILENT) -f inputs/CMakeFiles/signal_verifier_lib.dir/build.make inputs/CMakeFiles/signal_verifier_lib.dir/lib/signal_verifier_lib.c.s
+.PHONY : lib/signal_verifier_lib.c.s
 
 src/signal_verifier.o: src/signal_verifier.c.o
 .PHONY : src/signal_verifier.o
@@ -163,6 +201,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... signal_verifier"
+	@echo "... signal_verifier_lib"
+	@echo "... lib/signal_verifier_lib.o"
+	@echo "... lib/signal_verifier_lib.i"
+	@echo "... lib/signal_verifier_lib.s"
 	@echo "... src/signal_verifier.o"
 	@echo "... src/signal_verifier.i"
 	@echo "... src/signal_verifier.s"

@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named signal_verifier_lib
+
+# Build rule for target.
+signal_verifier_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 signal_verifier_lib
+.PHONY : signal_verifier_lib
+
+# fast build rule for target.
+signal_verifier_lib/fast:
+	$(MAKE) $(MAKESILENT) -f inputs/CMakeFiles/signal_verifier_lib.dir/build.make inputs/CMakeFiles/signal_verifier_lib.dir/build
+.PHONY : signal_verifier_lib/fast
+
+#=============================================================================
 # Target rules for targets named signal_verifier
 
 # Build rule for target.
@@ -128,6 +141,19 @@ signal_verifier: cmake_check_build_system
 signal_verifier/fast:
 	$(MAKE) $(MAKESILENT) -f inputs/CMakeFiles/signal_verifier.dir/build.make inputs/CMakeFiles/signal_verifier.dir/build
 .PHONY : signal_verifier/fast
+
+#=============================================================================
+# Target rules for targets named signal_sender_lib
+
+# Build rule for target.
+signal_sender_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 signal_sender_lib
+.PHONY : signal_sender_lib
+
+# fast build rule for target.
+signal_sender_lib/fast:
+	$(MAKE) $(MAKESILENT) -f outputs/CMakeFiles/signal_sender_lib.dir/build.make outputs/CMakeFiles/signal_sender_lib.dir/build
+.PHONY : signal_sender_lib/fast
 
 #=============================================================================
 # Target rules for targets named signal_sender
@@ -165,7 +191,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... photo"
 	@echo "... signal_sender"
+	@echo "... signal_sender_lib"
 	@echo "... signal_verifier"
+	@echo "... signal_verifier_lib"
 .PHONY : help
 
 

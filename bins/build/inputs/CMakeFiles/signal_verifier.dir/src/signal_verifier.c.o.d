@@ -2,9 +2,7 @@ inputs/CMakeFiles/signal_verifier.dir/src/signal_verifier.c.o: \
  /home/duesan/Documents/embedded_systems_smart_house/bins/inputs/src/signal_verifier.c \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/stdc-predef.h \
  /home/duesan/Documents/embedded_systems_smart_house/bins/inputs/include/signal_verifier.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/gpiod.h \
- /opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/13.3.0/include/stdbool.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/stdlib.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/stdio.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/libc-header-start.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/features.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/features-time64.h \
@@ -18,16 +16,29 @@ inputs/CMakeFiles/signal_verifier.dir/src/signal_verifier.c.o: \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/gnu/stubs-32.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/gnu/stubs-hard.h \
  /opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/13.3.0/include/stddef.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/waitflags.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/waitstatus.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn-32.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn-common.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/sys/types.h \
+ /opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/13.3.0/include/stdarg.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/typesizes.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/typesizes-32.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/time64.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__fpos_t.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__mbstate_t.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__fpos64_t.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__FILE.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/FILE.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/struct_FILE.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/cookie_io_functions_t.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio_lim.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn-32.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/floatn-common.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio2-decl.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio2.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/stdlib.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/waitflags.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/waitstatus.h \
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/sys/types.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/clock_t.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/clockid_t.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/time_t.h \
@@ -60,23 +71,4 @@ inputs/CMakeFiles/signal_verifier.dir/src/signal_verifier.c.o: \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/alloca.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdlib-bsearch.h \
  /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdlib-float.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdlib.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/time.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/time.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/struct_tm.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/struct_itimerspec.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/locale_t.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__locale_t.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/stdio.h \
- /opt/poky/5.0.8/sysroots/x86_64-pokysdk-linux/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/13.3.0/include/stdarg.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__fpos_t.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__mbstate_t.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__fpos64_t.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/__FILE.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/FILE.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/struct_FILE.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/types/cookie_io_functions_t.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio_lim.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio2-decl.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio.h \
- /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdio2.h
+ /opt/poky/5.0.8/sysroots/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/usr/include/bits/stdlib.h
