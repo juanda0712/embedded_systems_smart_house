@@ -1,95 +1,69 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Casa Inteligente</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <h1>Casa Inteligente</h1>
+{% extends "layout.html" %}
 
-    <div>
-        <h2>Luces</h2>
-        <div id="luces"></div>
-    </div>
+{% block title %}Casa Inteligente{% endblock %}
 
-    <div>
-        <h2>Puertas</h2>
-        <div id="puertas"></div>
-    </div>
+{% block content %}
+<h1>Casa Inteligente (Vista 2D)</h1>
 
-    <div>
-        <h2>Jardín</h2>
-        <button onclick="verJardin()">Tomar foto del jardín</button>
-        <div id="foto-jardin"></div>
-    </div>
+<div id="casa">
+    <svg id="plano-casa" width="800" height="500" xmlns="http://www.w3.org/2000/svg">
 
-    <script>
-        async function obtenerLuces() {
-            const res = await fetch('/api/luces');
-            return await res.json();
-        }
+        <!-- Pasillo de Entrada -->
+        <rect x="350" y="0" width="100" height="80" fill="#ccc" stroke="#333" stroke-width="3" />
+        <text x="400" y="50" text-anchor="middle" font-size="14" fill="#000">Entrada</text>
 
-        async function actualizarLuces(nuevoEstado) {
-            await fetch('/api/luces', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ luces: nuevoEstado })
-            });
-        }
+        <!-- Habitación 1 -->
+        <rect id="habitacion-1" x="200" y="80" width="200" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
+        <text x="300" y="160" text-anchor="middle" font-size="16" fill="#000">Habitación 1</text>
 
-        async function cambiarLuz(index) {
-            const luces = await obtenerLuces();
-            luces[index] = !luces[index];
-            await actualizarLuces(luces);
-            renderLuces();
-        }
+        <!-- Habitación 2 -->
+        <rect id="habitacion-2" x="400" y="80" width="200" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
+        <text x="500" y="160" text-anchor="middle" font-size="16" fill="#000">Habitación 2</text>
 
-        async function renderLuces() {
-            const luces = await obtenerLuces();
-            const lucesDiv = document.getElementById('luces');
-            lucesDiv.innerHTML = '';
-            luces.forEach((valor, i) => {
-                const btn = document.createElement('button');
-                btn.textContent = `Luz ${i + 1}: ${valor ? 'Encendida' : 'Apagada'}`;
-                btn.onclick = () => cambiarLuz(i);
-                lucesDiv.appendChild(btn);
-            });
-        }
+                <!-- Sala -->
+        <rect id="habitacion-3" x="200" y="230" width="133" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
+        <text x="266" y="300" text-anchor="middle" font-size="16" fill="#000">Sala</text>
 
-        async function renderPuertas() {
-            const res = await fetch('/api/puertas');
-            const puertas = await res.json();
-            const puertasDiv = document.getElementById('puertas');
-            puertasDiv.innerHTML = '';
-            puertas.forEach((valor, i) => {
-                const p = document.createElement('p');
-                p.textContent = `Puerta ${i + 1}: ${valor ? 'Abierta' : 'Cerrada'}`;
-                puertasDiv.appendChild(p);
-            });
-}
+        <!-- Comedor -->
+        <rect id="habitacion-4" x="333" y="230" width="134" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
+        <text x="400" y="300" text-anchor="middle" font-size="16" fill="#000">Comedor</text>
+
+        <!-- Cocina -->
+        <rect id="habitacion-5" x="467" y="230" width="133" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
+        <text x="533" y="300" text-anchor="middle" font-size="16" fill="#000">Cocina</text>
 
 
-        function verJardin() {
-            const cont = document.getElementById('foto-jardin');
-            const img = document.createElement('img');
-            img.src = '/api/camara?' + new Date().getTime(); // evitar caché
-            img.alt = "Foto del jardín";
-            img.style.maxWidth = '100%';
-            cont.innerHTML = '';
-            cont.appendChild(img);
-        }
+        <!-- Patio / Jardín -->
+        <rect id="patio" x="200" y="380" width="400" height="100" fill="#b5e7a0" stroke="#333" stroke-width="3"/>
+        <text x="400" y="430" text-anchor="middle" font-size="16" fill="#000">Patio / Jardín</text>
 
-        function init() {
-            renderLuces();    // Carga las luces una vez
-            renderPuertas();  // Carga las puertas una vez
+        <!-- Puerta principal (entrada) -->
+        <rect x="375" y="-15" width="50" height="15" fill="#8b4513" stroke="#000" stroke-width="2"/>
 
-            setInterval(renderPuertas, 50);  // 2000 ms = 2 segundos
-        }
+        <!-- Puerta trasera (al patio) -->
+        <rect x="375" y="380" width="50" height="10" fill="#8b4513" stroke="#000" stroke-width="2"/>
 
+    </svg>
+</div>
 
-        init();
-    </script>
+<!-- Control de luces -->
+<div id="controles-luces">
+    <h2>Control de luces</h2>
+    <!-- Se actualiza dinámicamente -->
+</div>
 
-</body>
-</html>
+<!-- Estado de puertas -->
+<div id="estado-puertas">
+    <h2>Estado de puertas</h2>
+    <!-- Se actualiza dinámicamente -->
+</div>
+
+<!-- Jardín -->
+<div id="jardin">
+    <h2>Jardín</h2>
+    <button onclick="verJardin()">Tomar foto del jardín</button>
+    <div id="foto-jardin"></div>
+</div>
+
+<script src="{{ url_for('static', filename='modelo.js') }}"></script>
+{% endblock %}
