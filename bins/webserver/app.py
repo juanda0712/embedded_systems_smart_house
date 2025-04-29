@@ -25,7 +25,7 @@ estado = {
     "luces": [False, False, False, False, False],
 }
 
-mapa_luces = [5, 6, 13, 19, 26]
+mapa_luces = [26, 19, 13, 6, 5]
 mapa_puertas = [2, 3, 4, 15]
 
 def encender_luz(index):
@@ -39,10 +39,11 @@ def apagar_luz(index):
 def leer_puerta(index):
     pin = mapa_puertas[index]
     resultado = subprocess.run(["signal_verifier", str(pin)])
-    return resultado.returncode  # 0 = cerrada, 1 = abierta
+    estado_puerta = resultado.returncode
+    return estado_puerta  # 0 = cerrada, 1 = abierta
 
 def tomar_foto():
-    subprocess.run(["usr/bin/photo"])
+    subprocess.run(["photo"])
 
 @app.route('/')
 def index():
@@ -65,9 +66,11 @@ def luces():
 
 @app.route('/api/puertas', methods=["GET"])
 def puertas():
-    return jsonify([
-        leer_puerta(i) == 1 for i in range(4)
-    ])
+    puertas_estado = []
+    for i in range(4):  # 4 puertas
+        puerta_abierta = leer_puerta(i)
+        puertas_estado.append(True if puerta_abierta == 1 else False)
+    return jsonify(puertas_estado)
 
 @app.route('/api/camara')
 def camara():

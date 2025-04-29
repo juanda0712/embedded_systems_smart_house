@@ -20,18 +20,17 @@
         <rect id="habitacion-2" x="400" y="80" width="200" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
         <text x="500" y="160" text-anchor="middle" font-size="16" fill="#000">Habitación 2</text>
 
-                <!-- Sala -->
+        <!-- Sala -->
         <rect id="habitacion-3" x="200" y="230" width="133" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
         <text x="266" y="300" text-anchor="middle" font-size="16" fill="#000">Sala</text>
 
         <!-- Comedor -->
         <rect id="habitacion-4" x="333" y="230" width="134" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
-        <text x="400" y="300" text-anchor="middle" font-size="16" fill="#000">Comedor</text>
+        <text x="400" y="300" text-anchor="middle" font-size="16" fill="#000">Cocina</text>
 
         <!-- Cocina -->
         <rect id="habitacion-5" x="467" y="230" width="133" height="150" fill="#ddd" stroke="#333" stroke-width="3"/>
-        <text x="533" y="300" text-anchor="middle" font-size="16" fill="#000">Cocina</text>
-
+        <text x="533" y="300" text-anchor="middle" font-size="16" fill="#000">Comedor</text>
 
         <!-- Patio / Jardín -->
         <rect id="patio" x="200" y="380" width="400" height="100" fill="#b5e7a0" stroke="#333" stroke-width="3"/>
@@ -42,20 +41,17 @@
 
         <!-- Puerta trasera (al patio) -->
         <rect x="375" y="380" width="50" height="10" fill="#8b4513" stroke="#000" stroke-width="2"/>
-
     </svg>
 </div>
 
 <!-- Control de luces -->
 <div id="controles-luces">
     <h2>Control de luces</h2>
-    <!-- Se actualiza dinámicamente -->
 </div>
 
 <!-- Estado de puertas -->
-<div id="estado-puertas">
+<div id="puertas">
     <h2>Estado de puertas</h2>
-    <!-- Se actualiza dinámicamente -->
 </div>
 
 <!-- Jardín -->
@@ -65,5 +61,83 @@
     <div id="foto-jardin"></div>
 </div>
 
-<script src="{{ url_for('static', filename='modelo.js') }}"></script>
+<script>
+    async function obtenerLuces() {
+        const res = await fetch('/api/luces');
+        return await res.json();
+    }
+
+    async function actualizarLuces(nuevoEstado) {
+        await fetch('/api/luces', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ luces: nuevoEstado })
+        });
+    }
+
+    async function cambiarLuz(index) {
+        const luces = await obtenerLuces();
+        luces[index] = !luces[index];
+        await actualizarLuces(luces);
+        renderLuces();
+        actualizarCasa();
+    }
+
+    async function renderLuces() {
+        const luces = await obtenerLuces();
+        const cont = document.getElementById('controles-luces');
+        cont.innerHTML = '<h2>Control de luces</h2>';
+
+        luces.forEach((estado, i) => {
+            const btn = document.createElement('button');
+            btn.textContent = `Luz ${i + 1}: ${estado ? 'Encendida' : 'Apagada'}`;
+            btn.onclick = () => cambiarLuz(i);
+            cont.appendChild(btn);
+        });
+    }
+
+	async function renderPuertas() {
+        const res = await fetch('/api/puertas');
+        const puertas = await res.json();
+        const cont = document.getElementById('puertas');
+        cont.innerHTML = '<h2>Estado de puertas</h2>';
+
+        puertas.forEach((estado, i) => {
+            const p = document.createElement('p');
+            p.textContent = `Puerta ${i + 1}: ${estado ? 'Abierta' : 'Cerrada'}`;
+            cont.appendChild(p);
+        });
+    }
+
+    async function actualizarCasa() {
+        const luces = await obtenerLuces();
+        for (let i = 0; i < luces.length; i++) {
+            const hab = document.getElementById(`habitacion-${i + 1}`);
+            if (hab) {
+                hab.setAttribute('fill', luces[i] ? '#ffff66' : '#ddd');
+            }
+        }
+    }
+
+    function verJardin() {
+        const cont = document.getElementById('foto-jardin');
+        const img = document.createElement('img');
+        img.src = '/api/camara?' + new Date().getTime(); // evitar caché
+        img.alt = "Foto del jardín";
+        img.style.maxWidth = '100%';
+        cont.innerHTML = '';
+        cont.appendChild(img);
+    }
+
+    function init() {
+        renderLuces();
+        renderPuertas();
+        actualizarCasa();
+
+        setInterval(renderPuertas, 50);
+        setInterval(actualizarCasa, 50);
+    }
+
+    window.onload = init;
+</script>
 {% endblock %}
