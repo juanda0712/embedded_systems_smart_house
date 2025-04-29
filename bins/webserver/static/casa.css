@@ -1,0 +1,28 @@
+#casa {
+    margin: 20px;
+}
+
+
+.habitacion {
+    background-color: #ddd;
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+/* Asignar cada habitacion a un area del grid */
+#habitacion-1 { grid-area: sala; }
+#habitacion-2 { grid-area: cocina; }
+#habitacion-3 { grid-area: habitacion1; }
+#habitacion-4 { grid-area: habitacion2; }
+#habitacion-5 { grid-area: comedor; }
+
+
+
+#controles-luces, #estado-puertas, #jardin {
+    margin: 20px;
+}
